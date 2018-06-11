@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.Mappers.UserInterface" >
+
+
+    <resultMap id="loginMap" type="com.spring.EntiryPage.mysqlEntiry.UserEntiry">
+        <id property="id" column="Id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="time_db" column="time_db"/>
+
+    </resultMap>
+
+
+    <select id="select" resultType="com.spring.EntiryPage.mysqlEntiry.UserEntiry">
+
+        select * from admini_info where Id=#{id}
+
+    </select>
+
+
+
+
+    <select id="getUserByUser" resultType="com.spring.EntiryPage.mysqlEntiry.UserEntiry" parameterType="string">
+
+            select * from admini_info where name=#{name}
+
+    </select>
+
+</mapper>

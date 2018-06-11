@@ -1,0 +1,42 @@
+server:
+  port: 8031
+spring:
+  banner:
+    charset: UTF-8
+    image:
+      location: timg.jpg
+      height: 10
+      width: 10
+  mvc:
+    throw-exception-if-no-handler-found: true
+    contentnegotiation.favor-path-extension: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size:  20MB
+      file-size-threshold: 0
+      location: E:/File/text
+      enabled: true
+  thymeleaf:
+    mode: HTML
+    cache: false
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    check-template-location: true
+    check-template: true
+    enabled: true
+    suffix: .html
+  cache:
+    type: ehcache
+    ehcache:
+      config: configFile/ehcache-spring.xml
+  aop:
+    proxy-target-class: true
+logging:
+  config: classpath:configFile/logback.xml
+  pattern:
+    console: CONSOLE_LOG_PATTERN
+    level: LOG_LEVEL_PATTER
+    dateformat: LOG_DATEFORMAT_PATTERN

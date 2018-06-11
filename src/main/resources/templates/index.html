@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{../static/AfterFramework/amaze/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/html" th:href="@{../static/AfterFramework/amaze/amaze/css/amazeui.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{../static/css/index.css}" />
+    <script th:src="@{../static/AfterFramework/amaze/jqurey/jquery-3.3.1.min.js}" rel="script"></script>
+    <script th:src="@{../static/AfterFramework/amaze/bootstrap/js/bootstrap.min.js}" rel="script"></script>
+    <script th:src="@{../static/AfterFramework/amaze/amaze/js/amazeui.min.js}" rel="script"></script>
+
+    <title>Title</title>
+    <script type="text/javascript">
+        function formAjax () {
+            if($('#userName').val()===""){
+                alert("请输入用户名");
+                // language=JQuery-CSS
+                $('#userNama').focus();
+                return false;
+            }
+            if($('#password').val()==""){
+                alert("密码为空");
+                $('#password').focus();
+                return false;
+            }
+            var name = $('#userName').val();
+            var pass = 	$('#password').val();
+            var Id = $('#Id').val();
+            var data = {
+                name: name,
+                pass: pass,
+                ID: Id
+            };
+            $.post({
+                url: "http://localhost:8031/spring/Login",
+                async: true,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success:function (res) {
+                    alert(res);
+                },
+                error:function () {
+                    alert("res");
+                }
+            });
+            return true;
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="body-login">
+        <div class="logo-image">
+            <img src="../static/Images/logo.jpg" height="100" width="100%" />
+        </div>
+        <div class="form-login">
+            <form action="spring/Login" method="post" onsubmit="return formAjax()">
+                <div class="form-group">
+                    <label>管理员编号</label>
+                    <input class="form-control" type="text" name="ID" id="Id" placeholder="shuRu">
+                </div>
+                <div class="form-group">
+                    <label for="userName">用户名</label>
+                    <input type="text" class="form-control" name="name" id="userName" placeholder="userName">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" name="pass" id="password" placeholder="password">
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input class="btn btn-info" value="提交" type="submit" id="btn-form">
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="dont-password">
+                        <a href="#" target="_blank">忘记密码</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
