@@ -1,12 +1,12 @@
 server:
-  port: 8031
+  port: 8080
 spring:
   banner:
     charset: UTF-8
     image:
       location: timg.jpg
-      height: 10
-      width: 10
+      height: 20
+      width: 20
   mvc:
     throw-exception-if-no-handler-found: true
     contentnegotiation.favor-path-extension: false
@@ -34,11 +34,11 @@ spring:
       config: configFile/ehcache-spring.xml
   aop:
     proxy-target-class: true
-#  security:
-#    user:
-#      password: 123456
-#      name: root
-#      roles: admin
+  security:
+    user:
+      password: 123456
+      name: root
+      roles: admin
 logging:
   config: classpath:configFile/logback.xml
   pattern:

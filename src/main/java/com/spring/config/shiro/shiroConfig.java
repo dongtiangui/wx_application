@@ -1,5 +1,6 @@
 package com.spring.config.shiro;
 import com.spring.shiro.realm.realm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -9,6 +10,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -17,6 +19,13 @@ import java.util.*;
 
 @Configuration
 public class shiroConfig {
+
+
+    private final HashedCredentialsMatcher matcherLocal;
+    @Autowired
+    public shiroConfig(HashedCredentialsMatcher matcherLocal) {
+        this.matcherLocal = matcherLocal;
+    }
 
 
     @Bean
@@ -48,7 +57,10 @@ public class shiroConfig {
 
     @Bean(name = "ShiroRealm")
     public realm shiroRealm(){
-       return new realm();
+
+       realm r = new realm();
+       r.setCredentialsMatcher(matcherLocal);
+       return r;
 
     }
     @Bean(name = "shiroFile")

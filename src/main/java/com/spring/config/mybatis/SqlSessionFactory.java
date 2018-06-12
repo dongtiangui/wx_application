@@ -46,6 +46,7 @@ public class SqlSessionFactory implements TransactionManagementConfigurer {
         dataSource.setMaxPoolSize(20);
         dataSource.setMaxConnectionAge(50);
         dataSource.setMaxIdleTime(60000);
+        dataSource.setInitialPoolSize(5);
         dataSource.setAutoCommitOnClose(false);
         return dataSource;
     }
