@@ -34,6 +34,11 @@ spring:
       config: configFile/ehcache-spring.xml
   aop:
     proxy-target-class: true
+#  security:
+#    user:
+#      password: 123456
+#      name: root
+#      roles: admin
 logging:
   config: classpath:configFile/logback.xml
   pattern:
