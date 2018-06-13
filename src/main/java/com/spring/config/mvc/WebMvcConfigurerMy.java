@@ -2,13 +2,11 @@ package com.spring.config.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Component
 @Configuration
-@EnableWebSecurity
 public class WebMvcConfigurerMy implements WebMvcConfigurer {
 
     private BaseInterceptor baseInterceptor;

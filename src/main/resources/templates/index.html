@@ -25,11 +25,11 @@
             }
             var name = $('#userName').val();
             var pass = 	$('#password').val();
-            var Id = $('#Id').val();
+            var ID = $('#Id').val();
             var data = {
                 name: name,
                 pass: pass,
-                ID: Id
+                ID: ID
             };
             $.post({
                 url: "http://localhost:8031/spring/Login",
@@ -45,7 +45,6 @@
             });
             return true;
         }
-
     </script>
 
 
@@ -87,6 +86,6 @@
         </div>
     </div>
 </div>
-
+<div th:text="${image}"></div>
 </body>
 </html>

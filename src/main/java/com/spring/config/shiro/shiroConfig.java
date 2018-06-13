@@ -10,7 +10,6 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -20,13 +19,17 @@ import java.util.*;
 @Configuration
 public class shiroConfig {
 
+    @Bean(name = "credentialsMatcherMy")
+    public HashedCredentialsMatcher credentialsMatcher(){
 
-    private final HashedCredentialsMatcher matcherLocal;
-    @Autowired
-    public shiroConfig(HashedCredentialsMatcher matcherLocal) {
-        this.matcherLocal = matcherLocal;
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+
+        credentialsMatcher.setHashIterations(1024);
+        credentialsMatcher.setHashAlgorithmName("MD5");
+
+        return credentialsMatcher;
+
     }
-
 
     @Bean
     public DefaultWebSecurityManager securityManager(){
@@ -38,8 +41,7 @@ public class shiroConfig {
     }
     @Bean
     public SessionManager sessionManager(){
-        SessionManager sessionManager = new DefaultWebSessionManager();
-        return sessionManager;
+        return new DefaultWebSessionManager();
 
     }
     @Bean(name = "lifecycleBeanPostProcessor")
@@ -57,11 +59,9 @@ public class shiroConfig {
 
     @Bean(name = "ShiroRealm")
     public realm shiroRealm(){
-
        realm r = new realm();
-       r.setCredentialsMatcher(matcherLocal);
+       r.setCredentialsMatcher(credentialsMatcher());
        return r;
-
     }
     @Bean(name = "shiroFile")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(){
@@ -92,7 +92,7 @@ public class shiroConfig {
     public ModularRealmAuthenticator realmAuthenticator(){
         ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
         List collection = new ArrayList();
-        collection.add(shiroRealm());
+        boolean add = collection.add(shiroRealm());
         authenticator.setRealms(collection);
         return authenticator;
     }
