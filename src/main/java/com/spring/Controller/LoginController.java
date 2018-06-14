@@ -1,10 +1,11 @@
 package com.spring.Controller;
-import com.spring.EntiryPage.mysqlEntiry.UserEntiry;
 import com.spring.Service.impl.Service;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,17 +22,6 @@ public class LoginController {
     @Autowired
     public LoginController(Service service) {
         this.service = service;
-    }
-
-    @RequestMapping("/mybatis")
-    @ResponseBody
-    public ModelAndView select(){
-        ModelAndView mv = new ModelAndView();
-        mv.setView(new MappingJackson2JsonView());
-        UserEntiry userEntiry = service.getUser(1);
-        mv.addObject("userEntiry",userEntiry);
-        System.out.println("userEntiry = " + userEntiry);
-        return mv;
     }
     @RequestMapping(value = "/Login")
     @ResponseBody
@@ -51,10 +41,14 @@ public class LoginController {
                 subject.login(Token);
                 mv.setView(new MappingJackson2JsonView());
                 mv.addObject("success","success");
-            }catch (AuthenticationException e){
+            }catch (UnknownAccountException e){
                 System.out.println("e = " + e.getMessage());
-                 mv.addObject("error","error");
-                 return mv;
+                mv.addObject("error","error");
+                return mv;
+            }catch (IncorrectCredentialsException e){
+                System.out.println("e = " + e.getMessage());
+                mv.addObject("error","error");
+                return mv;
             }
         }
         return mv;

@@ -31,18 +31,18 @@
                 pass: pass,
                 ID: ID
             };
-            $.post({
-                url: "http://localhost:8031/spring/Login",
-                async: true,
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                success:function (res) {
-                    alert(res);
-                },
-                error:function () {
-                    alert("res");
-                }
-            });
+            // $.post({
+            //     url: "http://localhost:8031/spring/Login",
+            //     async: true,
+            //     contentType: "application/json",
+            //     data: JSON.stringify(data),
+            //     success:function (res) {
+            //         alert(res);
+            //     },
+            //     error:function () {
+            //         alert("res");
+            //     }
+            // });
             return true;
         }
     </script>
@@ -86,6 +86,5 @@
         </div>
     </div>
 </div>
-<div th:text="${image}"></div>
 </body>
 </html>
