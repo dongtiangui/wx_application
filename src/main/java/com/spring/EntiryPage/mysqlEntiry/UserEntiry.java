@@ -7,14 +7,19 @@ public class UserEntiry implements Serializable {
     private String name;
     private String password;
     private String time_db;
+    private String roles;
+
     public UserEntiry(){
     }
-    public UserEntiry(int id, String name, String password, String time_db) {
+
+    public UserEntiry(int id, String name, String password, String time_db, String roles) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.time_db = time_db;
+        this.roles = roles;
     }
+
     @JsonSerialize
     public int getId() {
         return id;
@@ -47,9 +52,19 @@ public class UserEntiry implements Serializable {
     public void setTime_db(String time_db) {
         this.time_db = time_db;
     }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
     @JsonSerialize
+
     @Override
     public String toString() {
-        return "UserEntiry{" + "Id=" + id + ", user='" + name + '\'' + ", password='" + password + '\'' + ", time_db='" + time_db + '\'' + '}';
+        return "UserEntiry{" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + ", time_db='" + time_db + '\'' + ", roles='" + roles + '\'' + '}';
     }
 }

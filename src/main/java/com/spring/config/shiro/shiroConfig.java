@@ -3,6 +3,7 @@ import com.spring.shiro.realm.realm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -13,97 +14,101 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-
-import java.util.*;
+import org.springframework.context.annotation.ImportResource;
 
 @Configuration
+@ImportResource(locations = "classpath:configFile/shiro-spring.xml")
 public class shiroConfig {
 
-    @Bean(name = "credentialsMatcherMy")
-    public HashedCredentialsMatcher credentialsMatcher(){
-
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-
-        credentialsMatcher.setHashIterations(1024);
-        credentialsMatcher.setHashAlgorithmName("MD5");
-
-        return credentialsMatcher;
-
-    }
-
-    @Bean
-    public DefaultWebSecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setCacheManager(ehCacheManager());
-        securityManager.setSessionManager(sessionManager());
-        securityManager.setAuthenticator(realmAuthenticator());
-        return securityManager;
-    }
-    @Bean
-    public SessionManager sessionManager(){
-        return new DefaultWebSessionManager();
-
-    }
-    @Bean(name = "lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-        return new LifecycleBeanPostProcessor();
-    }
-
-    @Bean(name = "cacheManagerLocalShiro")
-    @DependsOn(value = "lifecycleBeanPostProcessor")
-    public EhCacheManager ehCacheManager(){
-        EhCacheManager ehCacheManager = new EhCacheManager();
-        ehCacheManager.setCacheManagerConfigFile("classpath:configFile/ehcache-spring.xml");
-        return ehCacheManager;
-    }
-
-    @Bean(name = "ShiroRealm")
-    public realm shiroRealm(){
-       realm r = new realm();
-       r.setCredentialsMatcher(credentialsMatcher());
-       return r;
-    }
-    @Bean(name = "shiroFile")
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean(){
-
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(securityManager());
-        Map<String, String> linkedHashMap = new LinkedHashMap<>();
-        linkedHashMap.put("/spring/Login","anon");
-//        linkedHashMap.put("/","anon");
-        linkedHashMap.put("/**", "anon");
-        linkedHashMap.put("/static/**","anon");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(linkedHashMap);
-        shiroFilterFactoryBean.setLoginUrl("/");
-        shiroFilterFactoryBean.setSuccessUrl("/spring/mybatis");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/spring/errorPassword");
-        return shiroFilterFactoryBean;
-    }
-
-    @Bean
-    @DependsOn({"lifecycleBeanPostProcessor"})
-    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
-        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-        advisorAutoProxyCreator.setProxyTargetClass(true);
-        return advisorAutoProxyCreator;
-    }
-
-    @Bean(name = "realmAuthenticatorLocal")
-    public ModularRealmAuthenticator realmAuthenticator(){
-        ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
-        List collection = new ArrayList();
-        boolean add = collection.add(shiroRealm());
-        authenticator.setRealms(collection);
-        return authenticator;
-    }
-
-    @Bean
-    public AuthorizationAttributeSourceAdvisor sourceAdvisor(){
-
-        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
-        advisor.setSecurityManager(securityManager());
-        return advisor;
-
-    }
+//    @Bean(name = "credentialsMatcherMy")
+//    public HashedCredentialsMatcher credentialsMatcher(){
+//
+//        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+//
+//        credentialsMatcher.setHashIterations(1024);
+//        credentialsMatcher.setHashAlgorithmName("MD5");
+//
+//        return credentialsMatcher;
+//
+//    }
+//
+//    @Bean
+//    public DefaultWebSecurityManager securityManager(){
+//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+//        securityManager.setCacheManager(ehCacheManager());
+//        securityManager.setSessionManager(sessionManager());
+//        securityManager.setAuthenticator(realmAuthenticator());
+//        //securityManager.setAuthorizer(realmAuthenticator());
+//        return securityManager;
+//    }
+//    @Bean
+//    public SessionManager sessionManager(){
+//        return new DefaultWebSessionManager();
+//
+//    }
+//    @Bean(name = "lifecycleBeanPostProcessor")
+//    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+//        return new LifecycleBeanPostProcessor();
+//    }
+//
+//    @Bean(name = "cacheManagerLocalShiro")
+//    @DependsOn(value = "lifecycleBeanPostProcessor")
+//    public EhCacheManager ehCacheManager(){
+//        EhCacheManager ehCacheManager = new EhCacheManager();
+//        ehCacheManager.setCacheManagerConfigFile("classpath:configFile/ehcache-spring.xml");
+//        return ehCacheManager;
+//    }
+//
+//    @Bean(name = "ShiroRealm")
+//    public realm shiroRealm(){
+//       realm r = new realm();
+//       r.setCredentialsMatcher(credentialsMatcher());
+//
+//
+//       return r;
+//    }
+//    @Bean(name = "shiroFile")
+//    public ShiroFilterFactoryBean getShiroFilterFactoryBean(){
+//
+//        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+//        shiroFilterFactoryBean.setSecurityManager(securityManager());
+//        Map<String, String> linkedHashMap = new LinkedHashMap<>();
+//        linkedHashMap.put("/spring/Login","anon");
+////        linkedHashMap.put("/","anon");
+//        linkedHashMap.put("/**", "anon");
+//        linkedHashMap.put("/static/**","anon");
+//        shiroFilterFactoryBean.setFilterChainDefinitionMap(linkedHashMap);
+//        shiroFilterFactoryBean.setLoginUrl("/");
+//        shiroFilterFactoryBean.setSuccessUrl("/spring/mybatis");
+//        shiroFilterFactoryBean.setUnauthorizedUrl("/spring/errorPassword");
+//        return shiroFilterFactoryBean;
+//    }
+//
+//    @Bean
+//    @DependsOn({"lifecycleBeanPostProcessor"})
+//    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+//        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+//        advisorAutoProxyCreator.setProxyTargetClass(true);
+//        return advisorAutoProxyCreator;
+//    }
+//
+//    @Bean(name = "realmAuthenticatorLocal")
+//    public ModularRealmAuthenticator realmAuthenticator(){
+//        ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
+//        List collection = new ArrayList();
+//        boolean add = collection.add(shiroRealm());
+//        authenticator.setRealms(collection);
+//        return authenticator;
+//    }
+//
+//
+//    @Bean
+//    public AuthorizationAttributeSourceAdvisor sourceAdvisor(){
+//
+//        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+//        advisor.setSecurityManager(securityManager());
+//        return advisor;
+//
+//    }
 
 }

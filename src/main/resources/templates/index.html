@@ -23,14 +23,14 @@
                 $('#password').focus();
                 return false;
             }
-            var name = $('#userName').val();
-            var pass = 	$('#password').val();
-            var ID = $('#Id').val();
-            var data = {
-                name: name,
-                pass: pass,
-                ID: ID
-            };
+            // var name = $('#userName').val();
+            // var pass = 	$('#password').val();
+            // var ID = $('#Id').val();
+            // var data = {
+            //     name: name,
+            //     pass: pass,
+            //     ID: ID
+            // };
             // $.post({
             //     url: "http://localhost:8031/spring/Login",
             //     async: true,
@@ -58,7 +58,7 @@
             <img src="../static/Images/logo.jpg" height="100" width="100%" />
         </div>
         <div class="form-login">
-            <form action="spring/Login" method="post" onsubmit="return formAjax()">
+            <form action="Login" method="post" onsubmit="return formAjax()">
                 <div class="form-group">
                     <label>管理员编号</label>
                     <input class="form-control" type="text" name="ID" id="Id" placeholder="shuRu">
@@ -81,6 +81,10 @@
                     <div class="col-sm-4" id="dont-password">
                         <a href="#" target="_blank">忘记密码</a>
                     </div>
+                </div>
+                <div>
+                    <p th:text="${message}"></p>
+
                 </div>
             </form>
         </div>

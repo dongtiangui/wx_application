@@ -7,6 +7,9 @@
         <fileset id="fileset2" name="Redis Conf" removed="false" />
         <fileset id="fileset3" name="Shiro Spring" removed="false" />
         <fileset id="fileset4" name="Shiro Spring (2)" removed="false" />
+        <fileset id="fileset5" name="Shiro Spring (3)" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/configFile/shiro-spring.xml</file>
+        </fileset>
       </configuration>
     </facet>
     <facet type="web" name="Web">
