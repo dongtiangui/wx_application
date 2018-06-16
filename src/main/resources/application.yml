@@ -1,5 +1,10 @@
 server:
   port: 8080
+  tomcat:
+    max-connections: 10
+    max-threads: 20
+    accesslog:
+      file-date-format: yyyy-mm-dd
 spring:
   banner:
     charset: UTF-8
@@ -9,7 +14,7 @@ spring:
       width: 20
   mvc:
     throw-exception-if-no-handler-found: true
-    contentnegotiation.favor-path-extension: false
+    contentnegotiation.favor-path-extension: true
   servlet:
     multipart:
       max-file-size: 10MB
@@ -34,11 +39,6 @@ spring:
       config: configFile/ehcache-spring.xml
   aop:
     proxy-target-class: true
-#  security:
-#    user:
-#      password: 123456
-#      name: root
-#      roles: admin
 logging:
   config: classpath:configFile/logback.xml
   pattern:

@@ -18,7 +18,7 @@ public class rootController {
         this.redis = redis;
         this.redisTemplate = redisTemplate;
     }
-    @RequestMapping("/")
+    @RequestMapping("/root")
 
     public String BOOT(Model model){
 

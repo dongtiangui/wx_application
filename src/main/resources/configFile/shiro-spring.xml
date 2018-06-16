@@ -4,76 +4,76 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="cacheManager" ref="cacheManager"/>
-        <property name="authorizer" ref="realmAuthorizer"/>
-        <property name="authenticator" ref="realmAuthenticator"/>
-    </bean>
+    <!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
+        <!--<property name="cacheManager" ref="cacheManager"/>-->
+        <!--<property name="authorizer" ref="realmAuthorizer"/>-->
+        <!--<property name="authenticator" ref="realmAuthenticator"/>-->
+    <!--</bean>-->
 
-    <bean id="ehCacheManagerFactoryBean" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-        <property name="configLocation" value="configFile/ehcache-spring.xml"/>
-    </bean>
-    <bean id="ehCacheCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+    <!--<bean id="ehCacheManagerFactoryBean" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+        <!--<property name="configLocation" value="configFile/ehcache-spring.xml"/>-->
+    <!--</bean>-->
+    <!--<bean id="ehCacheCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">-->
 
-         <property name="cacheManager" ref="ehCacheManagerFactoryBean"/>
+         <!--<property name="cacheManager" ref="ehCacheManagerFactoryBean"/>-->
+
+    <!--</bean>-->
+    <!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
+        <!--<property name="cacheManager" ref="ehCacheManagerFactoryBean"/>-->
+
+    <!--</bean>-->
+
+    <!--<bean id="realm" class="realm">-->
 
 
-    </bean>
-    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManager" ref="ehCacheManagerFactoryBean"/>
+    <!--</bean>-->
 
-    </bean>
+<!--&lt;!&ndash;认证&ndash;&gt;-->
+    <!--<bean id="realmAuthenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">-->
+           <!--<property name="realms">-->
+               <!--<list>-->
+                   <!--<ref bean="realm"/>-->
+               <!--</list>-->
+           <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;授权&ndash;&gt;-->
+    <!--<bean id="realmAuthorizer" class="org.apache.shiro.authz.ModularRealmAuthorizer">-->
+         <!--<property name="realms">-->
+             <!--<list>-->
+                 <!--<ref bean="realm"/>-->
+             <!--</list>-->
+         <!--</property>-->
+    <!--</bean>-->
 
-    <bean id="realm" class="com.spring.shiro.realm.realm">
-        
+    <!--<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
 
-    </bean>
+    <!--<bean id="shiroFilterLocal" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
+        <!--<property name="securityManager" ref="securityManager"/>-->
+    <!--&lt;!&ndash;没有权限&ndash;&gt;-->
+        <!--<property name="unauthorizedUrl" value="/error.html"/>-->
+    <!--&lt;!&ndash;登陆失败&ndash;&gt;-->
+        <!--<property name="loginUrl" value="/"/>-->
 
-<!--认证-->
-    <bean id="realmAuthenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
-           <property name="realms">
-               <list>
-                   <ref bean="realm"/>
-               </list>
-           </property>
-    </bean>
-    <!--授权-->
-    <bean id="realmAuthorizer" class="org.apache.shiro.authz.ModularRealmAuthorizer">
-         <property name="realms">
-             <list>
-                 <ref bean="realm"/>
-             </list>
-         </property>
-    </bean>
+        <!--<property name="filterChainDefinitions">-->
+            <!--<value>-->
+                <!--/static/**=anon-->
+                <!--/Login=anon-->
+                <!--/logout=logout-->
+                <!--/student=roles[student]-->
+                <!--/**=roles[admin]-->
+                <!--/**=authc-->
+            <!--</value>-->
+        <!--</property>-->
 
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!--</bean>-->
 
-    <bean id="shiroFilterLocal" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-        <property name="securityManager" ref="securityManager"/>
-    <!--没有权限-->
-        <property name="unauthorizedUrl" value="/error.html"/>
-    <!--登陆失败-->
-        <property name="loginUrl" value="/"/>
-        <property name="filterChainDefinitions">
-            <value>
-                /Login=anon
-                /logout=logout
-                /success=anon
-                /**=roles[admin]
-                /student=roles[student]
-                /**=authc
-            </value>
-        </property>
-
-    </bean>
-
-    <bean id="mappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/error.html</prop>
-                <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/error.html</prop>
-            </props>
-        </property>
-    </bean>
+    <!--<bean id="mappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+        <!--<property name="exceptionMappings">-->
+            <!--<props>-->
+                <!--<prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/error.html</prop>-->
+                <!--<prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/error.html</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 </beans>

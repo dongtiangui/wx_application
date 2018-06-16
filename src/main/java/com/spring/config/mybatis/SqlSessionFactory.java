@@ -72,7 +72,6 @@ public class SqlSessionFactory implements TransactionManagementConfigurer {
     @Bean(name = "annotationDrivenTransactionManagerLocal")
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-
         try {
             dataSourceTransactionManager.setDataSource(dataSources());
         } catch (PropertyVetoException e) {

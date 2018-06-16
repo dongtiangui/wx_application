@@ -1,13 +1,16 @@
 package com.spring.Service.impl;
 
+import com.spring.EntiryPage.ControllerEntiry.LoginUser;
 import com.spring.EntiryPage.mysqlEntiry.UserEntiry;
 import com.spring.Mappers.UserInterface;
 import com.spring.Service.ServiceInterface;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.jboss.logging.Logger;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,17 +31,6 @@ public class Service implements ServiceInterface {
     public Service() {
 
     }
-
-    @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
-    @Override
-    public UserEntiry getUser(int id) {
-        logger.info(String.valueOf(Service.class));
-        sqlSession = sqlSessionFactoryBean.openSession();
-        UserInterface userInterface = sqlSession.getMapper(UserInterface.class);
-        UserEntiry userEntiry = userInterface.select(id);
-        return userEntiry;
-    }                   
-
     @Override
     public UserEntiry getUserByUserEntiry(String name) {
         sqlSession = sqlSessionFactoryBean.openSession();

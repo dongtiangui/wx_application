@@ -10,12 +10,10 @@ import org.springframework.web.servlet.config.annotation.*;
 public class WebMvcConfigurerMy implements WebMvcConfigurer {
 
     private BaseInterceptor baseInterceptor;
-    private WebRequestInterceptorLocal webRequestInterceptorLocal;
 
     @Autowired
-    public WebMvcConfigurerMy(BaseInterceptor baseInterceptor, WebRequestInterceptorLocal webRequestInterceptorLocal) {
+    public WebMvcConfigurerMy(BaseInterceptor baseInterceptor) {
         this.baseInterceptor = baseInterceptor;
-        this.webRequestInterceptorLocal = webRequestInterceptorLocal;
     }
 
 

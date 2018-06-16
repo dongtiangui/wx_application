@@ -73,18 +73,28 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <input class="btn btn-info" value="提交" type="submit" id="btn-form">
                         </div>
                     </div>
-                    <div class="col-sm-4" id="dont-password">
-                        <a href="#" target="_blank">忘记密码</a>
+                    <div class="col-sm-3" id="dont-password">
+                        <a href="revise">修改密码</a>
+                    </div>
+                    <div class="col-sm-3" id="register">
+                        <a href="registerPage" target="_blank">注册一个</a>
                     </div>
                 </div>
                 <div>
                     <p th:text="${message}"></p>
 
+                </div>
+                <div>
+                    <p th:text="${success}"></p>
+
+                </div>
+                <div>
+                    <p th:text="${reviseSuccess}"></p>
                 </div>
             </form>
         </div>

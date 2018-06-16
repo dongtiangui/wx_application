@@ -5,11 +5,14 @@ import java.io.Serializable;
 public class LoginUser implements Serializable {
     public String name;
     public String password;
+    public String roles;
+
     public LoginUser(){}
 
-    public LoginUser(String name, String password) {
+    public LoginUser(String name, String password,String roles) {
         this.name = name;
         this.password = password;
+        this.roles = roles;
     }
 
     public String getName() {
@@ -28,8 +31,16 @@ public class LoginUser implements Serializable {
         this.password = password;
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
-        return "LoginUser{" + "name='" + name + '\'' + ", password='" + password + '\'' + '}';
+        return "LoginUser{" + "name='" + name + '\'' + ", password='" + password + '\'' + ", roles='" + roles + '\'' + '}';
     }
 }

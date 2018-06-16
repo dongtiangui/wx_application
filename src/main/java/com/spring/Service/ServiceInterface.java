@@ -6,8 +6,6 @@ import com.spring.EntiryPage.mysqlEntiry.UserEntiry;
 
 public interface ServiceInterface {
 
-    UserEntiry getUser(int id);
-
     UserEntiry getUserByUserEntiry(String name);
 
 }

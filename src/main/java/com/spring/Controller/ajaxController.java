@@ -4,6 +4,7 @@ import com.spring.EntiryPage.mysqlEntiry.UserEntiry;
 import com.spring.Service.impl.LoginImpl;
 import com.spring.Service.impl.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +15,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@RequestMapping(value = "/form")
+@Controller
 public class ajaxController {
 
     public final LoginImpl login;
@@ -26,19 +26,19 @@ public class ajaxController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/ajax",method = RequestMethod.GET)
-    public Map<String,Object> getAjax(){
-        Map<String,Object> map = new HashMap<>();
-//        if (login.ajax(user.getName(),user.getPassword())){
-//            map.put("resultAjax",true);
-//            return map;
-//        }
-//        else {
-//            map.put("resultAjax",false);
-//        }
-        map.put("User",service.getUserByUserEntiry("admin").getName());
+    @RequestMapping("/registerPage")
+    public String register(){
 
-        return map;
+
+        return "register";
+    }
+    @RequestMapping(value = "/revise")
+    public String  revisePassword(){
+
+
+
+
+        return "revise";
     }
 
 }
