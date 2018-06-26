@@ -35,4 +35,19 @@
 
     </select>
 
+
+    <select id="getUserRoles" resultType="java.lang.String">
+
+        select roles from admini_info where name=#{name}
+
+    </select>
+
+    <select id="getUserByUserEntiry" resultType="com.spring.EntiryPage.mysqlEntiry.UserEntiry">
+
+
+          select * from admini_info
+
+
+    </select>
+
 </mapper>

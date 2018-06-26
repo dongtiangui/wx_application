@@ -8,4 +8,7 @@ public interface ServiceInterface {
 
     UserEntiry getUserByUserEntiry(String name);
 
+
+
+
 }

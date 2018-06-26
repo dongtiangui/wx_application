@@ -50,7 +50,7 @@
 //        return listenerContainer;
 //    }
 //
-//    @Bean
+//    @Bean(name = "threadPoolTaskExecutor")
 //    public ThreadPoolTaskExecutor threadPoolTaskExecutor(){
 //        ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
 //        poolTaskExecutor.setCorePoolSize(20);

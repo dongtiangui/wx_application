@@ -1,6 +1,5 @@
 package com.spring.Service;
 
-import com.spring.EntiryPage.ControllerEntiry.LoginUser;
 
 public interface LoginInterface {
 
@@ -10,4 +9,5 @@ public interface LoginInterface {
 
     boolean updata(String name,String password);
 
+    String getUserName(String name);
 }

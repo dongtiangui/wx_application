@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8088
   tomcat:
     max-connections: 10
     max-threads: 20
@@ -39,9 +39,14 @@ spring:
       config: configFile/ehcache-spring.xml
   aop:
     proxy-target-class: true
+    auto: true
 logging:
   config: classpath:configFile/logback.xml
   pattern:
     console: CONSOLE_LOG_PATTERN
     level: LOG_LEVEL_PATTER
     dateformat: LOG_DATEFORMAT_PATTERN
+
+
+
+

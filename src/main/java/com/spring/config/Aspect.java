@@ -13,16 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Aspect {
 
-    @Before("execution(* com.spring.Service.impl.Service.getUserByUserEntiry(..))")
-    public void text(){
+//    @Before("execution(* com.spring.Service.impl.LoginImpl.insert(..))")
+//    public void text(){
+//
+//        System.out.println("前置" + Aspect.class.getName());
+//
+//    }
 
-        System.out.println("前置" + Aspect.class.getName());
-
-    }
     @After("execution(* com.spring.Service.impl.Service.getUserByUserEntiry(..)))")
     public void before(){
 
         System.out.println("Aspect.class.getSimpleName() = " + Aspect.class.getSimpleName());
 
     }
+
+//    @AfterThrowing("execution(* com.spring.Controller.LoginController.formController(..))")
+//    @RequestMapping
+//    public String string(){
+//
+//        System.out.println("异常");
+//
+//       return "success";
+//    }
+
+
+
+
+
+
 }

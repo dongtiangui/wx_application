@@ -9,6 +9,27 @@
     <script th:src="@{../static/AfterFramework/amaze/jqurey/jquery-3.3.1.min.js}" rel="script"></script>
     <script th:src="@{../static/AfterFramework/amaze/bootstrap/js/bootstrap.min.js}" rel="script"></script>
     <script th:src="@{../static/AfterFramework/amaze/amaze/js/amazeui.min.js}" rel="script"></script>
+    <script type="text/javascript">
+
+        function register() {
+            var username = $('#userName').val();
+            var password = $('#password').val();
+
+            var passwordAgin = $('#password-agin').val();
+
+            if (password!==passwordAgin){
+
+                alert("密码不一致");
+                return false;
+            }
+
+        }
+
+
+
+
+    </script>
+
 
 </head>
 <body>
@@ -18,7 +39,7 @@
             <img src="../static/Images/logo.jpg" height="100" width="100%" />
         </div>
         <div class="form-login">
-            <form action="registerUser" method="post">
+            <form action="registerUser" method="post" onsubmit="return register()">
                 <div class="form-group">
                     <label for="userName">用户名</label>
                     <input type="text" class="form-control" name="name" id="userName" placeholder="userName">
@@ -26,6 +47,10 @@
                 <div class="form-group">
                     <label for="password">密码</label>
                     <input type="password" class="form-control" name="pass" id="password" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <label for="password">再次输入密码</label>
+                    <input type="password" class="form-control" name="pass-agin" id="password-agin" placeholder="password">
                 </div>
                 <div class="form-group">
                     <label for="rolesBy">角色</label>

@@ -59,10 +59,7 @@
         </div>
         <div class="form-login">
             <form action="Login" method="post" onsubmit="return formAjax()">
-                <div class="form-group">
-                    <label>管理员编号</label>
-                    <input class="form-control" type="text" name="ID" id="Id" placeholder="shuRu">
-                </div>
+
                 <div class="form-group">
                     <label for="userName">用户名</label>
                     <input type="text" class="form-control" name="name" id="userName" placeholder="userName">
@@ -87,13 +84,7 @@
                 </div>
                 <div>
                     <p th:text="${message}"></p>
-
-                </div>
-                <div>
                     <p th:text="${success}"></p>
-
-                </div>
-                <div>
                     <p th:text="${reviseSuccess}"></p>
                 </div>
             </form>

@@ -1,10 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/html" th:href="@{../static/AfterFramework/amaze/amaze/css/amazeui.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{../static/AfterFramework/amaze/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{../static/css/style.css}" />
+    <script th:src="@{../static/AfterFramework/amaze/jqurey/jquery-3.3.1.min.js}" rel="script" type="text/javascript"></script>
+    <script th:src="@{../static/AfterFramework/amaze/bootstrap/js/bootstrap.min.js}" rel="script" type="text/javascript"></script>
+    <script th:src="@{../static/AfterFramework/amaze/amaze/js/amazeui.min.js}" rel="script" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.tree li:has(ul)').addClass('parent_li').find(' > button').attr('title', 'Collapse this branch');
+            $('.tree li.parent_li > button').on('click', function (e) {
+                var children = $(this).parent('li.parent_li').find(' > ul > li');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                } else {
+                    children.show('fast');
+                }
+                e.stopPropagation();
+            });
+        });
+
+    </script>
+
 </head>
 <body>
-        admin
+
+        <div class="adminLocal">
+            <div class="tree well">
+                <div class="menu-local">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                    <span>功能菜单</span>
+                </div>
+                <ul>
+                    <li>
+                        <button><i class="glyphicon glyphicon-user"></i> 学生基本信息</button>
+                        <ul>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 信息录入</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 信息修改</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 信息删除</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 信息查询</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button><i class="glyphicon glyphicon-tags"></i> 学生成绩</button>
+                        <ul>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 成绩查询</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 成绩录入</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 成绩修改</button>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <button><i class="glyphicon glyphicon-calendar"></i> 学生课程</button>
+                        <ul>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 教室调节</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 课程调节</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 课程通知</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 课程进度</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button><i class="glyphicon glyphicon-education"></i>学生学分情况</button>
+                        <ul>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 必修学分</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 素拓学分</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 课外学术学分</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 德育学分</button>
+                            </li>
+                            <li>
+                                <button><i class="icon-minus-sign"></i> 其它学分</button>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <button><i class="glyphicon glyphicon-grain"></i> 学生违纪情况</button>
+                    </li>
+
+                    <li>
+                        <button><i class="glyphicon glyphicon-hourglass"></i> 学生奖惩情况</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-main">
+                <div class="int-page">
+                    <h1 th:class="h1">欢迎您</h1>
+                    <h1 th:text="${nameUser}" th:class="h1"></h1>
+                    <a href="logout">退出</a>
+                </div>
+
+            </div>
+        </div>
 </body>
 </html>

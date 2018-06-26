@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{../static/AfterFramework/amaze/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/html" th:href="@{../static/AfterFramework/amaze/amaze/css/amazeui.min.css}" />
+    <script th:src="@{../static/AfterFramework/amaze/jqurey/jquery-3.3.1.min.js}" rel="script"></script>
+    <script th:src="@{../static/AfterFramework/amaze/bootstrap/js/bootstrap.min.js}" rel="script"></script>
+    <script th:src="@{../static/AfterFramework/amaze/amaze/js/amazeui.min.js}" rel="script"></script>
+
 </head>
 <body>
-
         <a href="logout">退出</a>
         <a href="admin">管理员</a>
-
-
         <a href="student">学生</a>
+
+
+        <p th:text="${userName}"></p>
+
+      <table class="table table-hover">
+          <tr>
+              <td>编号</td>
+              <td>用户名</td>
+              <td>密码</td>
+              <td>时间</td>
+              <td>角色</td>
+
+          </tr>
+          <tr th:each="prod : ${UserEntiry}">
+              <td th:text="${prod.id}"></td>
+              <td th:text="${prod.name}"></td>
+              <td th:text="${prod.password}"></td>
+              <td th:text="${prod.time_db}"></td>
+              <td th:text="${prod.roles}"></td>
+          </tr>
+      </table>
+
+
 </body>
 </html>
